@@ -10,8 +10,13 @@
     },
     "authors": [
         {
-            "name": "Paulo Henrique dos S. Andrade"
+            "role": "Developer",
+            "name": "Paulo Henrique Andrade",
+            "email": "phdorocha@gmail.com",
+            "homepage": "https://www.sidsolucoes.com/"
         }
     ],
-    "require": {}
+    "require": {
+        "php": "^7.0"
+    }
 }
