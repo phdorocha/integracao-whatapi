@@ -12,33 +12,35 @@ class IntegracaoWhatAPI
     protected $optionsRequest = [];
     private $client;
 
-    function __construct()
+    function __construct($token, $bearer)
     {
         $config = [];
         $client = new Client([
             'base_uri' => 'https://app.whatapi.com.br/', // URL base da API
             'timeout' => 10.0, // Tempo limite da solicitação em segundos
         ]);
+        $this->token  = $token;
+        $this->bearer = $bearer;
     }
 
     public function sendMessage($message, $numero)
     {
         $response = $this->client->request('POST', 'rest-api/sendText', [
             'headers' => [
-                'Authorization' => 'Bearer 825aefdd-6763-40b7-95c0-594ee4e5713c',
+                'Authorization' => "Bearer {$this->bearer}",
             ],
             'multipart' => [
                 [
                     'name' => 'tokenid',
-                    'contents' => '92a93236-7bf476ef-608e6b9d'
+                    'contents' => "{$this->token}"
                 ],
                 [
                     'name' => 'numero',
-                    'contents' => '55{numero}'
+                    'contents' => "55{$numero}"
                 ],
                 [
                     'name' => 'mensagem',
-                    'contents' => '{message}'
+                    'contents' => "{$message}"
                 ]
             ],
             RequestOptions::HTTP_ERRORS => false // Não lançar exceções para respostas HTTP com códigos de erro
