@@ -1,8 +1,8 @@
 {
   "name": "phdorocha/integracao-whatapi",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Pacote para integração com a API https://whatapi.com.br da RobsonHost.",
-  "main": "index.php",
+  "main": "IntegracaoWhatAPI.php",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
