@@ -1,0 +1,17 @@
+{
+    "name": "phdorocha/integracao-whatapi",
+    "description": "Pacote para integração com a API https://whatapi.com.br da RobsonHost.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Phdorocha\\IntegracaoWhatapi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Paulo Henrique dos S. Andrade"
+        }
+    ],
+    "require": {}
+}
