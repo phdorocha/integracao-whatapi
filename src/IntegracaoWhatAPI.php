@@ -7,40 +7,36 @@ use GuzzleHttp\RequestOptions;
 
 class IntegracaoWhatAPI
 {
-    protected $token;
-    protected $bearer;
+    protected $apikey;
+    protected $instancia;
     protected $optionsRequest = [];
     private $client;
 
-    function __construct($token, $bearer)
+    function __construct($apikey, $instancia)
     {
         $config = [];
         $client = new Client([
-            'base_uri' => 'https://app.whatapi.com.br/', // URL base da API
+            'base_uri' => 'http://easychatbot.sidsolucoes.com.br:8080', // URL base da API
             'timeout' => 10.0, // Tempo limite da solicitação em segundos
         ]);
-        $this->token  = $token;
-        $this->bearer = $bearer;
+        $this->apikey  = $apikey;
+        $this->instancia = $instancia;
     }
 
     public function sendMessage($message, $numero)
     {
-        $response = $this->client->request('POST', 'rest-api/sendText', [
+        $response = $this->client->request('POST', "message/sendText/$this->instancia", [
             'headers' => [
-                'Authorization' => "Bearer {$this->bearer}",
+                'apikey' => "Bearer {$this->apikey}",
             ],
             'multipart' => [
                 [
-                    'name' => 'tokenid',
-                    'contents' => "{$this->token}"
-                ],
-                [
-                    'name' => 'numero',
+                    'name' => 'number',
                     'contents' => "55{$numero}"
                 ],
                 [
-                    'name' => 'mensagem',
-                    'contents' => "{$message}"
+                    'name' => 'textMessage',
+                    'contents' => "{'text': '.$message.'}"
                 ]
             ],
             RequestOptions::HTTP_ERRORS => false // Não lançar exceções para respostas HTTP com códigos de erro
